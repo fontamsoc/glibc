@@ -75,8 +75,11 @@ __libc_csu_init (int argc, char **argv, char **envp)
   {
     const size_t size = __preinit_array_end - __preinit_array_start;
     size_t i;
-    for (i = 0; i < size; i++)
+    for (i = 0; i < size; i++) {
+      if ((((unsigned long)__preinit_array_start[i]) +0xfff) <= 0xfff)
+        continue;
       (*__preinit_array_start [i]) (argc, argv, envp);
+    }
   }
 #endif
 
@@ -85,8 +88,11 @@ __libc_csu_init (int argc, char **argv, char **envp)
 #endif
 
   const size_t size = __init_array_end - __init_array_start;
-  for (size_t i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++) {
+      if ((((unsigned long)__init_array_start[i]) +0xfff) <= 0xfff)
+        continue;
       (*__init_array_start [i]) (argc, argv, envp);
+  }
 }
 
 /* This function should not be used anymore.  We run the executable's
@@ -97,8 +103,11 @@ __libc_csu_fini (void)
 {
 #ifndef LIBC_NONSHARED
   size_t i = __fini_array_end - __fini_array_start;
-  while (i-- > 0)
+  while (i-- > 0) {
+    if ((((unsigned long)__fini_array_start[i]) +0xfff) <= 0xfff)
+      continue;
     (*__fini_array_start [i]) ();
+  }
 
 # if ELF_INITFINI
   _fini ();
