@@ -19,6 +19,10 @@
 
 #include <errno.h>
 #include <tls.h>
+#include <libc-diag.h>
+
+DIAG_PUSH_NEEDS_COMMENT;
+DIAG_IGNORE_NEEDS_COMMENT (12, "-Winfinite-recursion");
 
 int *
 __errno_location (void)
@@ -26,3 +30,5 @@ __errno_location (void)
   return &errno;
 }
 libc_hidden_def (__errno_location)
+
+DIAG_POP_NEEDS_COMMENT;

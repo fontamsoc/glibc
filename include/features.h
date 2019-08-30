@@ -392,20 +392,7 @@
 # define __USE_GNU	1
 #endif
 
-#if defined _FORTIFY_SOURCE && _FORTIFY_SOURCE > 0
-# if !defined __OPTIMIZE__ || __OPTIMIZE__ <= 0
-#  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
-# elif !__GNUC_PREREQ (4, 1)
-#  warning _FORTIFY_SOURCE requires GCC 4.1 or later
-# elif _FORTIFY_SOURCE > 1
-#  define __USE_FORTIFY_LEVEL 2
-# else
-#  define __USE_FORTIFY_LEVEL 1
-# endif
-#endif
-#ifndef __USE_FORTIFY_LEVEL
-# define __USE_FORTIFY_LEVEL 0
-#endif
+#define __USE_FORTIFY_LEVEL 0
 
 /* The function 'gets' existed in C89, but is impossible to use
    safely.  It has been removed from ISO C11 and ISO C++14.  Note: for

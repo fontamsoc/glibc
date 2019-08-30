@@ -24,5 +24,5 @@
 int
 tcflush (int fd, int queue_selector)
 {
-  return __ioctl (fd, TCFLSH, queue_selector);
+  return ioctl (fd, TCFLSH, queue_selector);
 }
