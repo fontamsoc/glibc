@@ -22,12 +22,9 @@ libc_hidden_proto (__sched_get_priority_min)
 extern int __sched_rr_get_interval (__pid_t __pid, struct timespec *__t);
 
 /* These are Linux specific.  */
-extern int __clone (int (*__fn) (void *__arg), void *__child_stack,
-		    int __flags, void *__arg, ...);
+extern int __clone (int (*__fn)(void *__arg), void *__child_stack, int __flags,
+		    void *__arg, pid_t *__ptid, void *__newtls, pid_t *__ctid);
 libc_hidden_proto (__clone)
-extern int __clone2 (int (*__fn) (void *__arg), void *__child_stack_base,
-		     size_t __child_stack_size, int __flags, void *__arg, ...);
-libc_hidden_proto (__clone2)
 /* NB: Can't use "__typeof__ (getcpu)" since getcpu is Linux specific
    and Hurd doesn't have it.  */
 extern int __getcpu (unsigned int *, unsigned int *);
