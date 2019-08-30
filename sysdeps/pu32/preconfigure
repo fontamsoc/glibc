@@ -1,0 +1,6 @@
+case "$machine" in
+pu32*)
+	base_machine=pu32
+	machine=pu32
+	;;
+esac
