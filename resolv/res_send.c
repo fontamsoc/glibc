@@ -941,7 +941,10 @@ send_vc(res_state statp,
 	 * All is well, or the error is fatal.  Signal that the
 	 * next nameserver ought not be tried.
 	 */
+	DIAG_PUSH_NEEDS_COMMENT;
+	DIAG_IGNORE_NEEDS_COMMENT (12, "-Wmaybe-uninitialized");
 	return resplen;
+	DIAG_POP_NEEDS_COMMENT;
 }
 
 static int

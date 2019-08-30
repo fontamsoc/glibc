@@ -24,5 +24,5 @@
 int
 tcflow (int fd, int action)
 {
-  return __ioctl (fd, TCXONC, action);
+  return ioctl (fd, TCXONC, action);
 }

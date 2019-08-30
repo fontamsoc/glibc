@@ -355,6 +355,7 @@ typedef struct
 #define EM_VISIUM	221	/* Controls and Data Services VISIUMcore */
 #define EM_FT32		222	/* FTDI Chip FT32 */
 #define EM_MOXIE	223	/* Moxie processor */
+#define EM_PU32         0xdeed  /* PU32 */
 #define EM_AMDGPU	224	/* AMD GPU */
 				/* reserved 225-242 */
 #define EM_RISCV	243	/* RISC-V */
@@ -4102,6 +4103,15 @@ enum
 #define R_ARC_TLS_DTPOFF_S9	0x4a
 #define R_ARC_TLS_LE_S9		0x4a
 #define R_ARC_TLS_LE_32		0x4b
+
+/* PU32 relocations. */
+#define R_PU32_NONE      0
+#define R_PU32_8         1
+#define R_PU32_16        2
+#define R_PU32_32        3
+#define R_PU32_8_PCREL   4
+#define R_PU32_16_PCREL  5
+#define R_PU32_32_PCREL  6
 
 __END_DECLS
 
