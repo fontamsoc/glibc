@@ -668,19 +668,19 @@ libc.so-gnulib := -lgcc
 endif
 +preinit = $(addprefix $(csu-objpfx),crti.o)
 +postinit = $(addprefix $(csu-objpfx),crtn.o)
-+prector = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtbegin.o`
-+postctor = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtend.o`
++prector = $(shell $(CC) --print-file-name=crtbegin.o)
++postctor = $(shell $(CC) --print-file-name=crtend.o)
 # Variants of the two previous definitions for linking PIE programs.
-+prectorS = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtbeginS.o`
-+postctorS = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtendS.o`
++prectorS = $(shell $(CC) --print-file-name=crtbegin.o)
++postctorS = $(shell $(CC) --print-file-name=crtend.o)
 # Variants of the two previous definitions for statically linking programs.
 ifeq (yes,$(enable-static-pie))
 # Static PIE must use PIE variants.
 +prectorT = $(+prectorS)
 +postctorT = $(+postctorS)
 else
-+prectorT = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtbeginT.o`
-+postctorT = `$(CC) $(sysdep-LDFLAGS) --print-file-name=crtend.o`
++prectorT = $(shell $(CC) --print-file-name=crtbegin.o)
++postctorT = $(shell $(CC) --print-file-name=crtend.o)
 endif
 csu-objpfx = $(common-objpfx)csu/
 elf-objpfx = $(common-objpfx)elf/
