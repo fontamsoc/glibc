@@ -79,6 +79,7 @@ clone
 clone2
 clone3
 close
+close_range
 cmpxchg_badaddr
 connect
 copy_file_range
@@ -94,6 +95,7 @@ epoll_create1
 epoll_ctl
 epoll_ctl_old
 epoll_pwait
+epoll_pwait2
 epoll_wait
 epoll_wait_old
 eventfd
@@ -105,6 +107,7 @@ execveat
 exit
 exit_group
 faccessat
+faccessat2
 fadvise64
 fadvise64_64
 fallocate
@@ -185,6 +188,7 @@ getsockname
 getsockopt
 gettid
 gettimeofday
+gettls
 getuid
 getuid32
 getunwind
@@ -221,6 +225,9 @@ kexec_file_load
 kexec_load
 keyctl
 kill
+landlock_add_rule
+landlock_create_ruleset
+landlock_restrict_self
 lchown
 lchown32
 lgetxattr
@@ -255,6 +262,7 @@ mmap
 mmap2
 modify_ldt
 mount
+mount_setattr
 move_mount
 move_pages
 mprotect
@@ -431,6 +439,7 @@ pread64
 preadv
 preadv2
 prlimit64
+process_madvise
 process_vm_readv
 process_vm_writev
 prof
@@ -543,6 +552,7 @@ setrlimit
 setsid
 setsockopt
 settimeofday
+settls
 setuid
 setuid32
 setxattr
