@@ -238,6 +238,7 @@ la_symbind (Elf_Sym *sym, unsigned int ndx, uintptr_t *refcook,
   return sym->st_value;
 }
 
+#if defined (ARCH_PLTENTER_MEMBERS)
 
 static void
 print_enter (uintptr_t *refcook, uintptr_t *defcook, const char *symname,
@@ -326,6 +327,10 @@ la_sparc64_gnu_pltenter (Elf64_Sym *sym __attribute__ ((unused)),
 # warning "pltenter for architecture not supported"
 #endif
 
+#endif
+
+
+#if defined (ARCH_PLTEXIT_MEMBERS)
 
 static void
 print_exit (uintptr_t *refcook, uintptr_t *defcook, const char *symname,
@@ -383,4 +388,6 @@ la_sparc64_gnu_pltexit (Elf64_Sym *sym, unsigned int ndx, uintptr_t *refcook,
 }
 #elif !defined HAVE_ARCH_PLTEXIT
 # warning "pltexit for architecture not supported"
+#endif
+
 #endif

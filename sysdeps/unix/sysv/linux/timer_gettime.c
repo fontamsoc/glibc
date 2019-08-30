@@ -26,29 +26,25 @@
 int
 __timer_gettime64 (timer_t timerid, struct __itimerspec64 *value)
 {
-  struct timer *kt = (struct timer *) timerid;
+  kernel_timer_t ktimerid = timerid_to_kernel_timer (timerid);
 
-#ifdef __ASSUME_TIME64_SYSCALLS
-# ifndef __NR_timer_gettime64
-#  define __NR_timer_gettime64 __NR_timer_gettime
-# endif
-  return INLINE_SYSCALL_CALL (timer_gettime64, kt->ktimerid, value);
-#else
-# ifdef __NR_timer_gettime64
-  int ret = INLINE_SYSCALL_CALL (timer_gettime64, kt->ktimerid, value);
+#ifndef __NR_timer_gettime64
+# define __NR_timer_gettime64 __NR_timer_gettime
+#endif
+  int ret = INLINE_SYSCALL_CALL (timer_gettime64, ktimerid, value);
+#ifndef __ASSUME_TIME64_SYSCALLS
   if (ret == 0 || errno != ENOSYS)
     return ret;
-# endif
+
   struct itimerspec its32;
-  int retval = INLINE_SYSCALL_CALL (timer_gettime, kt->ktimerid, &its32);
-  if (retval == 0)
+  ret = INLINE_SYSCALL_CALL (timer_gettime, ktimerid, &its32);
+  if (ret == 0)
     {
       value->it_interval = valid_timespec_to_timespec64 (its32.it_interval);
       value->it_value = valid_timespec_to_timespec64 (its32.it_value);
     }
-
-  return retval;
 #endif
+  return ret;
 }
 
 #if __TIMESIZE != 64
