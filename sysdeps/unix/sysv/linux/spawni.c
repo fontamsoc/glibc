@@ -64,7 +64,7 @@
   __clone2 (__fn, __stackbase, __stacksize, __flags, __args, 0, 0, 0)
 #else
 # define CLONE(__fn, __stack, __stacksize, __flags, __args) \
-  __clone (__fn, __stack, __flags, __args)
+  __clone (__fn, __stack, __flags, __args, 0, 0, 0)
 #endif
 
 /* Since ia64 wants the stackbase w/clone2, re-use the grows-up macro.  */

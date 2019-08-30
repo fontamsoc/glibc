@@ -393,7 +393,7 @@ _dl_profile_fixup (
   long int framesize = -1;
 
 
-#ifdef SHARED
+#if defined (SHARED) && defined (ARCH_PLTENTER_MEMBERS)
   /* Auditing checkpoint: report the PLT entering and allow the
      auditors to change the value.  */
   if (GLRO(dl_naudit) > 0
@@ -487,9 +487,8 @@ ARCH_FIXUP_ATTRIBUTE
 _dl_call_pltexit (struct link_map *l, ElfW(Word) reloc_arg,
 		  const void *inregs, void *outregs)
 {
-#ifdef SHARED
+#if defined (SHARED) && defined (ARCH_PLTEXIT_MEMBERS)
   const uintptr_t pltgot = (uintptr_t) D_PTR (l, l_info[DT_PLTGOT]);
-
   /* This is the address in the array where we store the result of previous
      relocations.  */
   // XXX Maybe the bound information must be stored on the stack since

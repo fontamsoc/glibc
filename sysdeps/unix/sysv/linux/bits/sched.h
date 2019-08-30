@@ -79,8 +79,8 @@ __BEGIN_DECLS
 
 #ifdef __USE_GNU
 /* Clone current process.  */
-extern int clone (int (*__fn) (void *__arg), void *__child_stack,
-		  int __flags, void *__arg, ...) __THROW;
+extern int clone (int (*__fn)(void *__arg), void *__child_stack, int __flags,
+		  void *__arg, pid_t *__ptid, void *__newtls, pid_t *__ctid) __THROW;
 
 /* Unshare the specified resources.  */
 extern int unshare (int __flags) __THROW;
