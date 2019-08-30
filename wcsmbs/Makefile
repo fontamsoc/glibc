@@ -95,7 +95,6 @@ CFLAGS-wcstod_l.c += $(strtox-CFLAGS)
 CFLAGS-wcstold_l.c += $(strtox-CFLAGS)
 CFLAGS-wcstof128_l.c += $(strtox-CFLAGS)
 CFLAGS-wcstof_l.c += $(strtox-CFLAGS)
-CPPFLAGS-tst-wchar-h.c += -D_FORTIFY_SOURCE=2
 
 CFLAGS-isoc99_wscanf.c += -fexceptions
 CFLAGS-isoc99_fwscanf.c += -fexceptions

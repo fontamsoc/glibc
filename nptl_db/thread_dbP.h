@@ -17,7 +17,7 @@
    <https://www.gnu.org/licenses/>.  */
 
 #ifndef _THREAD_DBP_H
-#define _THREAD_DBP_H	1
+#define _THREAD_DBP_H 1
 
 #include <stdbool.h>
 #include <stdint.h>
