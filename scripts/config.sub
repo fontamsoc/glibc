@@ -1255,6 +1255,7 @@ case $cpu-$vendor in
 			| pdp10 | pdp11 | pj | pjl | pn | power \
 			| powerpc | powerpc64 | powerpc64le | powerpcle | powerpcspe \
 			| pru \
+			| pu32 \
 			| pyramid \
 			| riscv | riscv32 | riscv32be | riscv64 | riscv64be \
 			| rl78 | romp | rs6000 | rx \
