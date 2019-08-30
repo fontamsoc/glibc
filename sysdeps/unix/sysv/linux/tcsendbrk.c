@@ -34,7 +34,7 @@ tcsendbreak (int fd, int duration)
 #ifdef TCSBRKP
   /* Probably Linux-specific: a positive third TCSBRKP ioctl argument is
      defined to be the number of 100ms units to break.  */
-  return __ioctl (fd, TCSBRKP, (duration + 99) / 100);
+  return ioctl (fd, TCSBRKP, (duration + 99) / 100);
 #else
   /* ioctl can't send a break of any other duration for us.
      This could be changed to use trickery (e.g. lower speed and
