@@ -105,6 +105,7 @@ execveat
 exit
 exit_group
 faccessat
+faccessat2
 fadvise64
 fadvise64_64
 fallocate
@@ -185,6 +186,7 @@ getsockname
 getsockopt
 gettid
 gettimeofday
+gettls
 getuid
 getuid32
 getunwind
@@ -543,6 +545,7 @@ setrlimit
 setsid
 setsockopt
 settimeofday
+settls
 setuid
 setuid32
 setxattr
