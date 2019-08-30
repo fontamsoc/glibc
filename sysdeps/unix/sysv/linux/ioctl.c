@@ -22,13 +22,8 @@
 #include <internal-ioctl.h>
 
 int
-__ioctl (int fd, unsigned long int request, ...)
+__ioctl (int fd, unsigned long int request, void *arg)
 {
-  va_list args;
-  va_start (args, request);
-  void *arg = va_arg (args, void *);
-  va_end (args);
-
   int r;
   if (!__ioctl_arch (&r, fd, request, arg))
     {

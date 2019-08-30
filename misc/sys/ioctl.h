@@ -39,7 +39,7 @@ __BEGIN_DECLS
    One argument may follow; its presence and type depend on REQUEST.
    Return value depends on REQUEST.  Usually -1 indicates error.  */
 #ifndef __USE_TIME_BITS64
-extern int ioctl (int __fd, unsigned long int __request, ...) __THROW;
+extern int ioctl (int __fd, unsigned long int __request, void *__arg) __THROW;
 #else
 # ifdef __REDIRECT
 extern int __REDIRECT_NTH (ioctl, (int __fd, unsigned long int __request, ...),
