@@ -1148,6 +1148,9 @@ case $cpu-$vendor in
 	tile*-*)
 		os=${os:-linux-gnu}
 		;;
+	pu32*-*)
+		os=linux
+		;;
 
 	*)
 		# Recognize the canonical CPU types that are allowed with any
