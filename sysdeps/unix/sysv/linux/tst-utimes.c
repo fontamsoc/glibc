@@ -25,6 +25,10 @@
 #include <support/xunistd.h>
 #include <support/temp_file.h>
 
+#ifndef struct_stat
+# define struct_stat struct stat64
+#endif
+
 static int temp_fd = -1;
 char *testfile;
 
@@ -50,7 +54,7 @@ do_prepare (int argc, char *argv[])
 static int
 test_utime_helper (const struct timeval *tv)
 {
-  struct stat64 st;
+  struct_stat st;
   int result;
   time_t t;
 

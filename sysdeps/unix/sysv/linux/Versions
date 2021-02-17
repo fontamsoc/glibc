@@ -237,7 +237,9 @@ libc {
     __timegm64;
     __timespec_get64;
     __utimensat64;
-     __utimes64;
+    __utimes64;
+    __localtime64;
+    __localtime64_r;
     # misc
     __ntp_gettime64;
     __ntp_gettimex64;

@@ -24,10 +24,14 @@
 #include <support/xunistd.h>
 #include <support/temp_file.h>
 
+#ifndef struct_stat
+# define struct_stat struct stat64
+#endif
+
 static int temp_fd = -1;
 
 /* struct timespec array with Y2038 threshold minus 2 and 1 seconds.  */
-const struct timespec t1[2] = { { 0x7FFFFFFE, 0 },  { 0x7FFFFFFF, 0 } };
+const static struct timespec t1[2] = { { 0x7FFFFFFE, 0 },  { 0x7FFFFFFF, 0 } };
 
 /* struct timespec array with Y2038 threshold plus 1 and 2 seconds.  */
 const struct timespec t2[2] = { { 0x80000001ULL, 0 },  { 0x80000002ULL, 0 } };
@@ -46,7 +50,7 @@ do_prepare (int argc, char *argv[])
 static int
 test_futimens_helper (const struct timespec *ts)
 {
-  struct stat64 st;
+  struct_stat st;
   int result;
   time_t t;
 
