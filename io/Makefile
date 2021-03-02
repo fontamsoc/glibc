@@ -69,7 +69,7 @@ tests		:= test-utime test-stat test-stat2 test-lfs tst-getcwd \
 		   tst-posix_fallocate tst-posix_fallocate64 \
 		   tst-fts tst-fts-lfs tst-open-tmpfile \
 		   tst-copy_file_range tst-getcwd-abspath tst-lockf \
-		   tst-ftw-lnk tst-file_change_detection tst-lchmod \
+		   tst-ftw-lnk tst-lchmod \
 		   tst-ftw-bz26353 tst-utimensat
 
 tests-time64    := tst-fts-time64 \
@@ -78,7 +78,7 @@ tests-time64    := tst-fts-time64 \
 		   tst-utimensat-time64
 
 # Likewise for statx, but we do not need static linking here.
-tests-internal += tst-statx
+tests-internal += tst-statx tst-file_change_detection
 tests-static += tst-statx
 
 ifeq ($(run-built-tests),yes)
