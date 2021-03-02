@@ -66,7 +66,8 @@ routines :=								      \
 	posix_madvise							      \
 	get_child_max sched_cpucount sched_cpualloc sched_cpufree \
 	streams-compat \
-	shm-directory
+	shm-directory \
+	glob64-time64 globfree64-time64
 
 aux		:= init-posix environ
 tests		:= test-errno tstgetopt testfnm runtests runptests \
