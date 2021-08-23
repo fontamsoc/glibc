@@ -23,6 +23,7 @@
 #define __NR_clock_settime64 404
 #define __NR_clone 220
 #define __NR_close 57
+#define __NR_close_range 436
 #define __NR_connect 203
 #define __NR_copy_file_range 285
 #define __NR_delete_module 106
@@ -91,7 +92,7 @@
 #define __NR_getsockopt 209
 #define __NR_gettid 178
 #define __NR_gettimeofday 169
-#define __NR_gettls 441
+#define __NR_gettls 442
 #define __NR_getuid 174
 #define __NR_getxattr 8
 #define __NR_init_module 105
@@ -182,6 +183,7 @@
 #define __NR_preadv 69
 #define __NR_preadv2 286
 #define __NR_prlimit64 261
+#define __NR_process_madvise 440
 #define __NR_process_vm_readv 270
 #define __NR_process_vm_writev 271
 #define __NR_pselect6 72
@@ -259,7 +261,7 @@
 #define __NR_setsid 157
 #define __NR_setsockopt 208
 #define __NR_settimeofday 170
-#define __NR_settls 440
+#define __NR_settls 441
 #define __NR_setuid 146
 #define __NR_setxattr 5
 #define __NR_shmat 196

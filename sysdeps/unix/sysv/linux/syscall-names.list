@@ -79,6 +79,7 @@ clone
 clone2
 clone3
 close
+close_range
 cmpxchg_badaddr
 connect
 copy_file_range
@@ -433,6 +434,7 @@ pread64
 preadv
 preadv2
 prlimit64
+process_madvise
 process_vm_readv
 process_vm_writev
 prof
