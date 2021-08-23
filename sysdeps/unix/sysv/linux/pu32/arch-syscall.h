@@ -32,6 +32,7 @@
 #define __NR_epoll_create1 20
 #define __NR_epoll_ctl 21
 #define __NR_epoll_pwait 22
+#define __NR_epoll_pwait2 441
 #define __NR_eventfd2 19
 #define __NR_execve 221
 #define __NR_execveat 281
@@ -92,7 +93,7 @@
 #define __NR_getsockopt 209
 #define __NR_gettid 178
 #define __NR_gettimeofday 169
-#define __NR_gettls 442
+#define __NR_gettls 443
 #define __NR_getuid 174
 #define __NR_getxattr 8
 #define __NR_init_module 105
@@ -261,7 +262,7 @@
 #define __NR_setsid 157
 #define __NR_setsockopt 208
 #define __NR_settimeofday 170
-#define __NR_settls 441
+#define __NR_settls 442
 #define __NR_setuid 146
 #define __NR_setxattr 5
 #define __NR_shmat 196
