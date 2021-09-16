@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // (c) William Fonkou Tambe
 
+#define __stringify_(x...)	#x
+#define __stringify(x...)	__stringify_(x)
+
 #ifdef __ASSEMBLER__
 
 #undef ENTRY
