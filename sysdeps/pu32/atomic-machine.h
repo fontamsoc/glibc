@@ -92,7 +92,7 @@ typedef uintmax_t uatomic_max_t;
 #define atomic_full_barrier() \
 	do { \
 		unsigned long x; \
-		asm volatile ("ldst %%sr, %0" :: "r" (&x) : "memory"); \
+		asm volatile ("ldst %%sr, %0" :: "r" (&x) : "%sr", "memory"); \
 	} while (0)
 
 #endif /* _ATOMIC_MACHINE_H */
