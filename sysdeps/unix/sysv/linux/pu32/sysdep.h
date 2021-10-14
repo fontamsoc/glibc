@@ -247,14 +247,6 @@
 #define INTERNAL_SYSCALL_NCS(number, nr, args...) \
 	__pu32_syscall##nr(number, args)
 
-#undef SYSCALL_CANCEL
-#define SYSCALL_CANCEL(...) \
-	INLINE_SYSCALL_CALL(__VA_ARGS__)
-
-#undef INTERNAL_SYSCALL_CANCEL
-#define INTERNAL_SYSCALL_CANCEL(...) \
-	INTERNAL_SYSCALL_CALL(__VA_ARGS__)
-
 // Pointer mangling is not supported for PU32.
 #define PTR_MANGLE(var) (void)(var)
 #define PTR_DEMANGLE(var) (void)(var)
