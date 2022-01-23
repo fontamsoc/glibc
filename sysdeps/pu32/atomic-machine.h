@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef _ATOMIC_MACHINE_H
-#define _ATOMIC_MACHINE_H
+#define _ATOMIC_MACHINE_H 1
 
 #include <stdint.h>
 

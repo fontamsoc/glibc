@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef _PU32_DL_TLS_H
-#define _PU32_DL_TLS_H
+#define _PU32_DL_TLS_H 1
 
 // We have no tls_index type.
 #define DONT_USE_TLS_INDEX 1

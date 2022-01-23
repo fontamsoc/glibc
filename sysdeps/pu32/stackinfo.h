@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef _STACKINFO_H
-#define _STACKINFO_H
+#define _STACKINFO_H 1
 
 #include <elf.h>
 

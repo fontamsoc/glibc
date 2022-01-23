@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef dl_machine_h
-#define dl_machine_h
+#define dl_machine_h 1
 
 #define ELF_MACHINE_NAME "pu32"
 

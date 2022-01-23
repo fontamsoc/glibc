@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef __LINUX_PU32_SYSDEP_H
-#define __LINUX_PU32_SYSDEP_H
+#define __LINUX_PU32_SYSDEP_H 1
 
 #include <sysdeps/unix/sysv/linux/generic/sysdep.h>
 #include <sysdeps/pu32/sysdep.h>

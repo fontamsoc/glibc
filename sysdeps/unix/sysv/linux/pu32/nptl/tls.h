@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef _PU32_TLS_H
-#define _PU32_TLS_H
+#define _PU32_TLS_H 1
 
 #include <dl-sysdep.h>
 

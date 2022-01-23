@@ -23,7 +23,7 @@
    %14         0x34
    %15         0x38
    %2          0x3c */
-#define JB_SP ((0x04/*%sp*/)/4)
+#define JB_SP 1
 // Helper for generic ____longjmp_chk().
 #define JB_FRAME_ADDRESS(buf) \
-	((void *)(buf[JB_SP*4]))
+	((void *)(((unsigned long *)buf)[JB_SP]))

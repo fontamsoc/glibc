@@ -12,8 +12,8 @@ static void mcount_internal (
 		unsigned long frompc,        \
 		unsigned long selfpc)
 
-#define MCOUNT                                           \
-	void _mcount (void *frompc) {                    \
-		mcount_internal ((unsigned long) frompc, \
-		(unsigned long) RETURN_ADDRESS (0));     \
+#define MCOUNT                                                                  \
+	void _mcount (void *frompc) {                                           \
+		mcount_internal ((unsigned long) frompc,                        \
+			         (unsigned long) __builtin_return_address (0)); \
 	}

@@ -2,7 +2,7 @@
 // (c) William Fonkou Tambe
 
 #ifndef _SIGCONTEXTINFO_H
-#define _SIGCONTEXTINFO_H
+#define _SIGCONTEXTINFO_H 1
 
 #include <stdint.h>
 #include <sys/ucontext.h>

@@ -58,3 +58,4 @@ ENTRY(__longjmp)
 	li8 %1, 1
 	j %15
 END(__longjmp)
+libc_hidden_def (__longjmp)
