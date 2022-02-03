@@ -20,10 +20,11 @@
 #define TLS_DTV_AT_TP 0
 
 typedef struct {
+	dtv_t *dtv;	/* Using TCB variant 1 layout where offset zero contains
+			   a pointer to the dynamic thread vector for the thread. */
+	void *self;	// Pointer to the thread descriptor.
 	void *tcb;	/* Pointer to the TCB. Not necessarily
 			   the thread descriptor used by libpthread. */
-	dtv_t *dtv;
-	void *self;	// Pointer to the thread descriptor.
 	int multiple_threads;
 	int gscope_flag;
 } tcbhead_t;
@@ -41,8 +42,11 @@ typedef struct {
 #define TLS_TCB_ALIGN TLS_INIT_TCB_ALIGN
 
 // Code to initially initialize the thread local storage pointer.
-#define TLS_INIT_TP(tcbp) \
-	({ __pu32_syscall1 (__NR_settls, tcbp); NULL; })
+#define TLS_INIT_TP(tcbp) ({ \
+	((tcbhead_t *)(tcbp))->self = tcbp; \
+	((tcbhead_t *)(tcbp))->tcb = tcbp; \
+	__pu32_syscall1 (__NR_settls, tcbp); \
+	NULL; })
 
 // Value passed to 'clone' for initialization
 // of the thread local storage pointer.
@@ -50,7 +54,7 @@ typedef struct {
 
 // Return the address of the dtv for the current thread.
 #define THREAD_DTV() \
-	(((tcbhead_t *)__pu32_syscall0(__NR_gettls))->dtv)
+	((tcbhead_t *)__pu32_syscall0(__NR_gettls))->dtv
 
 // Return the thread descriptor for the current thread.
 #define THREAD_SELF \
@@ -68,7 +72,7 @@ typedef struct {
 
 // Return dtv of given thread descriptor.
 #define GET_DTV(tcbp) \
-	(((tcbhead_t *)(tcbp))->dtv)
+	((tcbhead_t *)(tcbp))->dtv
 
 // Macros for accessing thread descriptor data.
 #define THREAD_GETMEM(descr, member) \
