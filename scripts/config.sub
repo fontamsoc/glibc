@@ -1148,7 +1148,7 @@ case $cpu-$vendor in
 	tile*-*)
 		os=${os:-linux-gnu}
 		;;
-	pu32-*)
+	pu32*-*)
 		os=linux
 		;;
 
