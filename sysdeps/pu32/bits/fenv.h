@@ -7,8 +7,8 @@
 
 #define FE_INEXACT (1<<0)
 #define FE_DIVBYZERO (1<<1)
-//#define FE_UNDERFLOW (1<<2)
-//#define FE_OVERFLOW (1<<3)
+#define FE_UNDERFLOW (1<<2)
+#define FE_OVERFLOW (1<<3)
 #define FE_INVALID (1<<4)
 
 // PU32 does not support floating-point exceptions.
