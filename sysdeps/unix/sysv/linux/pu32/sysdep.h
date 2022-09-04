@@ -104,7 +104,7 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
@@ -122,8 +122,8 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
-	register void *_a2 __asm__("%2") = ((sizeof(typeof(a2)) > sizeof(void *)) ? (void *)&((typeof(a2)){(a2)}) : (void *)(a2)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a2 __asm__("%2") = ((sizeof(__typeof__(a2)) > sizeof(void *)) ? (void *)&((__typeof__(a2)){(a2)}) : (void *)(a2)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
@@ -142,9 +142,9 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
-	register void *_a2 __asm__("%2") = ((sizeof(typeof(a2)) > sizeof(void *)) ? (void *)&((typeof(a2)){(a2)}) : (void *)(a2)); \
-	register void *_a3 __asm__("%3") = ((sizeof(typeof(a3)) > sizeof(void *)) ? (void *)&((typeof(a3)){(a3)}) : (void *)(a3)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a2 __asm__("%2") = ((sizeof(__typeof__(a2)) > sizeof(void *)) ? (void *)&((__typeof__(a2)){(a2)}) : (void *)(a2)); \
+	register void *_a3 __asm__("%3") = ((sizeof(__typeof__(a3)) > sizeof(void *)) ? (void *)&((__typeof__(a3)){(a3)}) : (void *)(a3)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
@@ -164,10 +164,10 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
-	register void *_a2 __asm__("%2") = ((sizeof(typeof(a2)) > sizeof(void *)) ? (void *)&((typeof(a2)){(a2)}) : (void *)(a2)); \
-	register void *_a3 __asm__("%3") = ((sizeof(typeof(a3)) > sizeof(void *)) ? (void *)&((typeof(a3)){(a3)}) : (void *)(a3)); \
-	register void *_a4 __asm__("%4") = ((sizeof(typeof(a4)) > sizeof(void *)) ? (void *)&((typeof(a4)){(a4)}) : (void *)(a4)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a2 __asm__("%2") = ((sizeof(__typeof__(a2)) > sizeof(void *)) ? (void *)&((__typeof__(a2)){(a2)}) : (void *)(a2)); \
+	register void *_a3 __asm__("%3") = ((sizeof(__typeof__(a3)) > sizeof(void *)) ? (void *)&((__typeof__(a3)){(a3)}) : (void *)(a3)); \
+	register void *_a4 __asm__("%4") = ((sizeof(__typeof__(a4)) > sizeof(void *)) ? (void *)&((__typeof__(a4)){(a4)}) : (void *)(a4)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
@@ -188,11 +188,11 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
-	register void *_a2 __asm__("%2") = ((sizeof(typeof(a2)) > sizeof(void *)) ? (void *)&((typeof(a2)){(a2)}) : (void *)(a2)); \
-	register void *_a3 __asm__("%3") = ((sizeof(typeof(a3)) > sizeof(void *)) ? (void *)&((typeof(a3)){(a3)}) : (void *)(a3)); \
-	register void *_a4 __asm__("%4") = ((sizeof(typeof(a4)) > sizeof(void *)) ? (void *)&((typeof(a4)){(a4)}) : (void *)(a4)); \
-	register void *_a5 __asm__("%5") = ((sizeof(typeof(a5)) > sizeof(void *)) ? (void *)&((typeof(a5)){(a5)}) : (void *)(a5)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a2 __asm__("%2") = ((sizeof(__typeof__(a2)) > sizeof(void *)) ? (void *)&((__typeof__(a2)){(a2)}) : (void *)(a2)); \
+	register void *_a3 __asm__("%3") = ((sizeof(__typeof__(a3)) > sizeof(void *)) ? (void *)&((__typeof__(a3)){(a3)}) : (void *)(a3)); \
+	register void *_a4 __asm__("%4") = ((sizeof(__typeof__(a4)) > sizeof(void *)) ? (void *)&((__typeof__(a4)){(a4)}) : (void *)(a4)); \
+	register void *_a5 __asm__("%5") = ((sizeof(__typeof__(a5)) > sizeof(void *)) ? (void *)&((__typeof__(a5)){(a5)}) : (void *)(a5)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
@@ -214,12 +214,12 @@
 	_Pragma("GCC diagnostic ignored \"-Wint-conversion\"");       \
 	_Pragma("GCC diagnostic ignored \"-Wint-to-pointer-cast\"");  \
 	/* conform to ABI: an argument with a size greater than sizeof(void *) must be passed by reference */                      \
-	register void *_a1 __asm__("%1") = ((sizeof(typeof(a1)) > sizeof(void *)) ? (void *)&((typeof(a1)){(a1)}) : (void *)(a1)); \
-	register void *_a2 __asm__("%2") = ((sizeof(typeof(a2)) > sizeof(void *)) ? (void *)&((typeof(a2)){(a2)}) : (void *)(a2)); \
-	register void *_a3 __asm__("%3") = ((sizeof(typeof(a3)) > sizeof(void *)) ? (void *)&((typeof(a3)){(a3)}) : (void *)(a3)); \
-	register void *_a4 __asm__("%4") = ((sizeof(typeof(a4)) > sizeof(void *)) ? (void *)&((typeof(a4)){(a4)}) : (void *)(a4)); \
-	register void *_a5 __asm__("%5") = ((sizeof(typeof(a5)) > sizeof(void *)) ? (void *)&((typeof(a5)){(a5)}) : (void *)(a5)); \
-	register void *_a6 __asm__("%6") = ((sizeof(typeof(a6)) > sizeof(void *)) ? (void *)&((typeof(a6)){(a6)}) : (void *)(a6)); \
+	register void *_a1 __asm__("%1") = ((sizeof(__typeof__(a1)) > sizeof(void *)) ? (void *)&((__typeof__(a1)){(a1)}) : (void *)(a1)); \
+	register void *_a2 __asm__("%2") = ((sizeof(__typeof__(a2)) > sizeof(void *)) ? (void *)&((__typeof__(a2)){(a2)}) : (void *)(a2)); \
+	register void *_a3 __asm__("%3") = ((sizeof(__typeof__(a3)) > sizeof(void *)) ? (void *)&((__typeof__(a3)){(a3)}) : (void *)(a3)); \
+	register void *_a4 __asm__("%4") = ((sizeof(__typeof__(a4)) > sizeof(void *)) ? (void *)&((__typeof__(a4)){(a4)}) : (void *)(a4)); \
+	register void *_a5 __asm__("%5") = ((sizeof(__typeof__(a5)) > sizeof(void *)) ? (void *)&((__typeof__(a5)){(a5)}) : (void *)(a5)); \
+	register void *_a6 __asm__("%6") = ((sizeof(__typeof__(a6)) > sizeof(void *)) ? (void *)&((__typeof__(a6)){(a6)}) : (void *)(a6)); \
 	_Pragma("GCC diagnostic pop");                                \
 	/* set %sr last to avoid it getting overwritten */            \
 	__asm__ __volatile__("" ::: "%sr", "memory"); \
