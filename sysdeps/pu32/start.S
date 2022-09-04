@@ -12,20 +12,6 @@ ENTRY(_start)
 	# linker arranges to have DT_FINI functions called for shared
 	# libraries that have been loaded before this code runs.
 
-	# Zero section .bss .
-	rli %8, __bss_start
-	rli %9, __bss_end
-	li8 %10, 0
-0:
-	cpy %11, %8
-	sltu %11, %9
-	rli %sr, 0f
-	jz %11, %sr
-	st32 %10, %8 # Write zero.
-	inc8 %8, 4
-	rli %sr, 0b
-	j %sr
-0:
 	cpy %6, %1 /* rtld_fini */
 
 	# Call __libc_start_main (
