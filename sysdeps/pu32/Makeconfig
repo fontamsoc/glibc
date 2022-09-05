@@ -1,2 +1,4 @@
+# pu32 does not provide crtbeginT.o, so use crtbegin.o.
++prectorT = $(+prector)
 # Compile libc code to do internal locking.
 libc-reentrant = yes
