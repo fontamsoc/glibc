@@ -89,10 +89,4 @@ typedef uintmax_t uatomic_max_t;
 #define __arch_compare_and_exchange_bool_acq(m, n, o) \
 	((atomic_compare_and_exchange_val_acq(m, n, o) == (o)) ? 0 : 1)
 
-#define atomic_full_barrier() \
-	do { \
-		unsigned long x; \
-		asm volatile ("ldst %%sr, %0" :: "r" (&x) : "%sr", "memory"); \
-	} while (0)
-
 #endif /* _ATOMIC_MACHINE_H */
