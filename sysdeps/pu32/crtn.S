@@ -4,14 +4,14 @@
 #define pop(R) \
 	ld32 R, %sp; inc8 %sp, 4
 
-	.file           "crtn.S"
+.file "crtn.S"
 
-	.section        ".init"
+.section ".init"
 	pop(%fp)
 	pop(%rp)
 	j %rp # retlr
 
-	.section        ".fini"
+.section ".fini"
 	pop(%fp)
 	pop(%rp)
 	j %rp # retlr
