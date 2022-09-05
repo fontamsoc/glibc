@@ -17,7 +17,7 @@
    along with this program; if not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _LD_CONFIG_H
-#define _LD_CONFIG_H 1
+#define _LD_CONFIG_H	1
 
 /* Use the internal textdomain used for libc messages.  */
 #define PACKAGE _libc_intl_domainname
