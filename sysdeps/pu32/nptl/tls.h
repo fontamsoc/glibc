@@ -4,8 +4,6 @@
 #ifndef _PU32_TLS_H
 #define _PU32_TLS_H 1
 
-#include <dl-sysdep.h>
-
 #ifndef __ASSEMBLER__
 
 #include <stdbool.h>
@@ -14,51 +12,32 @@
 #include <dl-dtv.h>
 #include <sysdep.h>
 
-// The thread local storage pointer
-// points to a thread control block.
-#define TLS_TCB_AT_TP 1
-#define TLS_DTV_AT_TP 0
+# define TLS_DTV_AT_TP	1
+# define TLS_TCB_AT_TP	0
+
+// Get the thread descriptor definition.
+#include <nptl/descr.h>
 
 typedef struct {
-	dtv_t *dtv;	/* Using TCB variant 1 layout where offset zero contains
-			   a pointer to the dynamic thread vector for the thread. */
-	void *self;	// Pointer to the thread descriptor.
-	void *tcb;	/* Pointer to the TCB. Not necessarily
-			   the thread descriptor used by libpthread. */
-	int multiple_threads;
-	int gscope_flag;
+	dtv_t *dtv;
+	void *private;
 } tcbhead_t;
 
 // This is the size of the initial TCB.
-#define TLS_INIT_TCB_SIZE sizeof (struct pthread)
+# define TLS_INIT_TCB_SIZE  sizeof(tcbhead_t)
 
 // This is the size of the TCB.
 #define TLS_TCB_SIZE TLS_INIT_TCB_SIZE
 
 // Alignment requirements for the initial TCB.
-#define TLS_INIT_TCB_ALIGN __alignof__ (struct pthread)
+#define TLS_INIT_TCB_ALIGN __alignof__(tcbhead_t)
 
 // Alignment requirements for the TCB.
 #define TLS_TCB_ALIGN TLS_INIT_TCB_ALIGN
 
-// Code to initially initialize the thread local storage pointer.
-#define TLS_INIT_TP(tcbp) ({ \
-	((tcbhead_t *)(tcbp))->self = tcbp; \
-	((tcbhead_t *)(tcbp))->tcb = tcbp; \
-	__pu32_syscall1 (__NR_settls, tcbp); \
-	NULL; })
+#define TLS_PRE_TCB_SIZE  sizeof(struct pthread)
 
-// Value passed to 'clone' for initialization
-// of the thread local storage pointer.
-#define TLS_DEFINE_INIT_TP(tp, pd) void *tp = (pd)
-
-// Return the address of the dtv for the current thread.
-#define THREAD_DTV() \
-	((tcbhead_t *)__pu32_syscall0(__NR_gettls))->dtv
-
-// Return the thread descriptor for the current thread.
-#define THREAD_SELF \
-	((struct pthread *)__pu32_syscall0(__NR_gettls))
+#define TLS_TCB_OFFSET  0
 
 // Install the dtv pointer.
 // The pointer passed is to the element
@@ -74,6 +53,29 @@ typedef struct {
 #define GET_DTV(tcbp) \
 	((tcbhead_t *)(tcbp))->dtv
 
+// Value passed to 'clone' for initialization of the thread local storage pointer.
+# define TLS_DEFINE_INIT_TP(tp, pd) void *tp = ((pd) + 1)
+
+// Code to initially initialize the thread local storage pointer.
+#define TLS_INIT_TP(tcbp) ({ \
+	__pu32_syscall1 (__NR_settls, ((char *)(tcbp) + TLS_TCB_OFFSET)); \
+	NULL; })
+
+// Return the address of the dtv for the current thread.
+#define THREAD_DTV() \
+	((tcbhead_t *)((unsigned long)__pu32_syscall0(__NR_gettls) \
+		- TLS_TCB_OFFSET))->dtv
+
+// Return the thread descriptor for the current thread.
+#undef THREAD_SELF
+#define THREAD_SELF \
+	((struct pthread *)((unsigned long)__pu32_syscall0(__NR_gettls) \
+		- TLS_TCB_OFFSET - TLS_PRE_TCB_SIZE))
+
+/* Magic for libthread_db to know how to do THREAD_SELF.  */
+# define DB_THREAD_SELF \
+	CONST_THREAD_AREA ((8*sizeof(unsigned long)), sizeof(struct pthread))
+
 // Macros for accessing thread descriptor data.
 #define THREAD_GETMEM(descr, member) \
 	descr->member
@@ -83,10 +85,6 @@ typedef struct {
 	descr->member = (value)
 #define THREAD_SETMEM_NC(descr, member, idx, value) \
 	descr->member[idx] = (value)
-
-// l_tls_offset == 0 is perfectly valid, so we have
-// to use some different value to mean unset l_tls_offset.
-#define NO_TLS_OFFSET -1
 
 /* Get and set the global scope generation counter in struct pthread.  */
 #define THREAD_GSCOPE_IN_TCB      1
@@ -110,9 +108,6 @@ typedef struct {
 	} while (0)
 #define THREAD_GSCOPE_WAIT() \
 	GL(dl_wait_lookup_done)()
-
-// Get the thread descriptor definition.
-#include <nptl/descr.h>
 
 #endif /* __ASSEMBLER__ */
 
