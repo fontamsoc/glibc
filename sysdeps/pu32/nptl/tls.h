@@ -57,19 +57,26 @@ typedef struct {
 # define TLS_DEFINE_INIT_TP(tp, pd) void *tp = ((pd) + 1)
 
 // Code to initially initialize the thread local storage pointer.
-#define TLS_INIT_TP(tcbp) ({ \
-	__pu32_syscall1 (__NR_settls, ((char *)(tcbp) + TLS_TCB_OFFSET)); \
+#define TLS_INIT_TP(tcbp) ({                              \
+	__asm__ __volatile__(                             \
+		"cpy %%tp, %0"                            \
+		:: "r"((char *)(tcbp) + TLS_TCB_OFFSET)   \
+		:  "memory");                             \
 	NULL; })
+
+# define GETTP() ({ \
+	register void *__tp __asm__("%tp"); \
+	__tp; })
 
 // Return the address of the dtv for the current thread.
 #define THREAD_DTV() \
-	((tcbhead_t *)((unsigned long)__pu32_syscall0(__NR_gettls) \
+	((tcbhead_t *)((unsigned long)GETTP() \
 		- TLS_TCB_OFFSET))->dtv
 
 // Return the thread descriptor for the current thread.
 #undef THREAD_SELF
 #define THREAD_SELF \
-	((struct pthread *)((unsigned long)__pu32_syscall0(__NR_gettls) \
+	((struct pthread *)((unsigned long)GETTP() \
 		- TLS_TCB_OFFSET - TLS_PRE_TCB_SIZE))
 
 /* Magic for libthread_db to know how to do THREAD_SELF.  */

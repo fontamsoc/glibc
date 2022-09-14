@@ -93,7 +93,6 @@
 #define __NR_getsockopt 209
 #define __NR_gettid 178
 #define __NR_gettimeofday 169
-#define __NR_gettls 246
 #define __NR_getuid 174
 #define __NR_getxattr 8
 #define __NR_init_module 105
@@ -266,7 +265,6 @@
 #define __NR_setsid 157
 #define __NR_setsockopt 208
 #define __NR_settimeofday 170
-#define __NR_settls 245
 #define __NR_setuid 146
 #define __NR_setxattr 5
 #define __NR_shmat 196

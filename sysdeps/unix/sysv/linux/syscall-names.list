@@ -188,7 +188,6 @@ getsockname
 getsockopt
 gettid
 gettimeofday
-gettls
 getuid
 getuid32
 getunwind
@@ -552,7 +551,6 @@ setrlimit
 setsid
 setsockopt
 settimeofday
-settls
 setuid
 setuid32
 setxattr
