@@ -253,4 +253,6 @@
 #define PTR_MANGLE(var) (void)(var)
 #define PTR_DEMANGLE(var) (void)(var)
 
+#define SINGLE_THREAD_BY_GLOBAL 1
+
 #endif /* __LINUX_PU32_SYSDEP_H */
