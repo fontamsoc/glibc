@@ -247,10 +247,10 @@
 #define INTERNAL_SYSCALL_NCS(number, nr, args...) \
 	__pu32_syscall##nr(number, args)
 
+#endif /* __ASSEMBLER__ */
+
 // Pointer mangling is not supported for PU32.
 #define PTR_MANGLE(var) (void)(var)
 #define PTR_DEMANGLE(var) (void)(var)
-
-#endif /* __ASSEMBLER__ */
 
 #endif /* __LINUX_PU32_SYSDEP_H */
