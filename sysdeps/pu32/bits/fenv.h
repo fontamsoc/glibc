@@ -14,12 +14,19 @@
 // PU32 does not support floating-point exceptions.
 #define FE_ALL_EXCEPT 0
 
-// PU32 supports only round-to-nearest.
 enum {
-	FE_TONEAREST =
-	#define FE_TONEAREST 0
+	FE_TONEAREST  =
+	#define FE_TONEAREST  (0x0)   /* default */
 	FE_TONEAREST,
-	__FE_UNDEFINED = -1,
+	FE_TOWARDZERO =
+	#define FE_TOWARDZERO (0x1)
+	FE_TOWARDZERO,
+	FE_DOWNWARD   =
+	#define FE_DOWNWARD   (0x2)
+	FE_DOWNWARD,
+	FE_UPWARD     =
+	#define FE_UPWARD     (0x3)
+	FE_UPWARD,
 };
 
 // Type representing exception flags (if there were any).
