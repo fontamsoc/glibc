@@ -116,9 +116,7 @@ main (int argc, char **argv)
 #if defined (TEST_FUNCTION) && defined (TEST_FUNCTON_ARGV)
 # error TEST_FUNCTION and TEST_FUNCTION_ARGV cannot be defined at the same time
 #endif
-#ifdef RUN_COMMAND_MODE
-  test_config.run_command_mode = 1;
-#elif defined (TEST_FUNCTION)
+#if defined (TEST_FUNCTION)
   test_config.test_function = TEST_FUNCTION;
 #elif defined (TEST_FUNCTION_ARGV)
   test_config.test_function_argv = TEST_FUNCTION_ARGV;
