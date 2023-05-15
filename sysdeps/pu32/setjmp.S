@@ -51,12 +51,15 @@
 
 ENTRY(setjmp)
 	saveregs
-	li8 %1, 0
-	j %rp
+	inc8 %1, -(15*__SIZEOF_POINTER__)
+	li8 %2, 1
+	rli %sr, __sigjmp_save
+	j %sr
 END(setjmp)
 
 ENTRY(_setjmp)
 	saveregs
+	inc8 %1, -(15*__SIZEOF_POINTER__)
 	li8 %2, 0
 	rli %sr, __sigjmp_save
 	j %sr
@@ -65,6 +68,7 @@ libc_hidden_def (_setjmp)
 
 ENTRY(__sigsetjmp)
 	saveregs
+	inc8 %1, -(15*__SIZEOF_POINTER__)
 	rli %sr, __sigjmp_save
 	j %sr
 END (__sigsetjmp)
