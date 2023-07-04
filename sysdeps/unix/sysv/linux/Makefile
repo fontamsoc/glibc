@@ -92,7 +92,6 @@ sysdep_routines += \
   prlimit64 \
   process_vm_readv \
   process_vm_writev \
-  pselect32 \
   readahead \
   setfsgid \
   setfsuid \
@@ -117,7 +116,6 @@ CFLAGS-vmsplice.c = -fexceptions -fasynchronous-unwind-tables
 CFLAGS-splice.c = -fexceptions -fasynchronous-unwind-tables
 CFLAGS-open_by_handle_at.c = -fexceptions -fasynchronous-unwind-tables
 CFLAGS-sync_file_range.c = -fexceptions -fasynchronous-unwind-tables
-CFLAGS-pselect32.c = -fexceptions -fasynchronous-unwind-tables
 CFLAGS-tst-writev.c += "-DARTIFICIAL_LIMIT=(0x80000000-sysconf(_SC_PAGESIZE))"
 
 # The test triggers FORTIFY abortion due to purposely wrong parameters
