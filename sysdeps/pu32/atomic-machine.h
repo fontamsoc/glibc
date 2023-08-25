@@ -8,8 +8,7 @@
 #define USE_ATOMIC_COMPILER_BUILTINS 0
 #define ATOMIC_EXCHANGE_USES_CAS 0
 
-#define atomic_exchange_acq(p, n) \
-({ \
+#define atomic_exchange_acq(p, n) ({ \
 	__typeof__(p) _p_ = (p); \
 	__typeof__(n) _n_ = (n); \
 	switch (sizeof(*(p))) { \
@@ -17,19 +16,22 @@
 			__asm__ __volatile__ ( \
 				"ldst8 %0, %1" \
 				: "+r" (_n_) \
-				: "r" (_p_)); \
+				: "r" (_p_) \
+				: "memory"); \
 			break; \
 		case 2: \
 			__asm__ __volatile__ ( \
 				"ldst16 %0, %1" \
 				: "+r" (_n_) \
-				: "r" (_p_)); \
+				: "r" (_p_) \
+				: "memory"); \
 			break; \
 		case 4: \
 			__asm__ __volatile__ ( \
 				"ldst32 %0, %1" \
 				: "+r" (_n_) \
-				: "r" (_p_)); \
+				: "r" (_p_) \
+				: "memory"); \
 			break; \
 		default: \
 			abort(); \
@@ -40,8 +42,7 @@
 #define atomic_exchange_rel \
 	atomic_exchange_acq
 
-#define atomic_compare_and_exchange_val_acq(p, n, o) \
-({ \
+#define atomic_compare_and_exchange_val_acq(p, n, o) ({ \
 	__typeof__(p) _p_ = (p); \
 	__typeof__(n) _n_ = (n); \
 	__typeof__(o) _o_ = (o); \
@@ -51,21 +52,24 @@
 				"cpy %%sr, %2; cldst8 %0, %1" \
 				: "+r" (_n_) \
 				: "r" (_p_), \
-				  "r" (_o_)); \
+				  "r" (_o_) \
+				: "%sr", "memory"); \
 			break; \
 		case 2: \
 			__asm__ __volatile__ ( \
 				"cpy %%sr, %2; cldst16 %0, %1" \
 				: "+r" (_n_) \
 				: "r" (_p_), \
-				  "r" (_o_)); \
+				  "r" (_o_) \
+				: "%sr", "memory"); \
 			break; \
 		case 4: \
 			__asm__ __volatile__ ( \
 				"cpy %%sr, %2; cldst32 %0, %1" \
 				: "+r" (_n_) \
 				: "r" (_p_), \
-				  "r" (_o_)); \
+				  "r" (_o_) \
+				: "%sr", "memory"); \
 			break; \
 		default: \
 			abort(); \
