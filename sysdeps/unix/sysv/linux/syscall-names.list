@@ -58,6 +58,7 @@ breakpoint
 brk
 cachectl
 cacheflush
+cachestat
 capget
 capset
 chdir
